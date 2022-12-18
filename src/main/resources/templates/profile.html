@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head th:insert="~{./fragments/head.html :: headerfiles}"></head>
+
+  <body>
+    <div th:replace="~{./fragments/navbar.html :: navbar}"></div>
+
+    <div class="container mt-3">
+      <div class="row mb-3">
+        <h3>My Sheets</h3>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6 mb-3" th:each="cheatSheet: ${cheatSheets}">
+          <div class="row"><h5 th:text="${cheatSheet.title}"></h5></div>
+          <div class="row">
+            <p>Snippets -></p>
+          </div>
+          <div class="row"><br /></div>
+          <div class="row">
+            <span class="col-md-4" th:text="${cheatSheet.creator}"></span
+            ><span class="col-md-8" th:text="${cheatSheet.publishedAt}"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<div
+  sec:authorize="isAnonymous()"
+  th:replace="~{./fragments/modal.html :: loginModal}"
+></div>
+
+<div
+  sec:authorize="isAnonymous()"
+  th:replace="~{./fragments/modal.html :: registerModal}"
+></div>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+</html>
+
+<!-- Login Modal -->
+<div
+  th:fragment="loginModal"
+  class="modal top fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="true"
+  data-bs-keyboard="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="loginModalLabel">Sign In</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form class="form-signin" method="post" action="/login">
+        <div class="modal-body">
+          <div class="row align-items-center mb-3">
+            <label for="username" class="sr-only col-md-3 text-left">Username</label>
+            <div class="col-md-9">
+              <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="Username"
+              required=""
+              autofocus=""
+              />
+            </div>
+          </div>
+          <div class="row align-items-center mb-3">
+            <label for="password" class="sr-only col-md-3 text-left">Password</label>
+            <div class="col-md-9">
+              <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              required=""
+            />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-success">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div
+  th:fragment="registerModal"
+  class="modal top fade"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="registerModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="true"
+  data-bs-keyboard="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="registerModalLabel">Register an Account</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form class="form-signin" method="post" th:action="@{/register}" th:object="${user}">
+        <div class="modal-body">
+          <div class="row align-items-center mb-3">
+            <label for="username" class="sr-only col-md-3 text-left">Username</label>
+            <div class="col-md-9">
+              <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="Username"
+              required=""
+              autofocus=""
+              th:field="*{username}"
+              />
+            </div>
+          </div>
+          <div class="row align-items-center mb-3">
+            <label for="password" class="sr-only col-md-3 text-left">Password</label>
+            <div class="col-md-9">
+              <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              required=""
+              th:field="*{password}"
+            />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-success">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
